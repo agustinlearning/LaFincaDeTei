@@ -1,10 +1,15 @@
 package logica;
 
-public class Vaca {
-	protected String id;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
-	public Vaca() {
-		
+public class Vaca extends Bovino {
+	ArrayList<Embarazo> misEmbarazos;
+	
+	
+	public Vaca(String id, String nombre, LocalDate fechaNac, String raza, String procedencia) {
+		super(id, nombre, fechaNac, raza, procedencia);
+		// TODO Auto-generated constructor stub
 	}
 
 }
