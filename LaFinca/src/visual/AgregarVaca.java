@@ -15,7 +15,15 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.*;
+
+import logica.Vaca;
+
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
@@ -38,6 +46,7 @@ public class AgregarVaca extends JDialog {
     private JSpinner spnFechaNac;
     private JTextField txtRaza;
     private JComboBox comboBox;
+    private File archivoSeleccionado;
 	/**
 	 * Launch the application.
 	 */
@@ -75,6 +84,11 @@ public class AgregarVaca extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("A\u00F1adir");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Vaca vaca = new Vaca(txtNombre.getText(),archivoSeleccionado.);
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -99,26 +113,43 @@ public class AgregarVaca extends JDialog {
 		btnSeleccionar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Crear el selector de archivos
                 JFileChooser fileChooser = new JFileChooser();
-                
-                // Filtrar para que solo muestre imágenes
+
                 FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imágenes (JPG, PNG)", "jpg", "jpeg", "png");
                 fileChooser.setFileFilter(filtro);
 
                 int resultado = fileChooser.showOpenDialog(null);
                 
                 if (resultado == JFileChooser.APPROVE_OPTION) {
-                    File archivoSeleccionado = fileChooser.getSelectedFile();
+                	
+                	File archivoOrigen = fileChooser.getSelectedFile();
                     
-                    // Crear el icono y asignarlo al JLabel
-                    ImageIcon imagenIcono = new ImageIcon(archivoSeleccionado.getAbsolutePath());
+                    try {
+                        Path carpetaDestino = Paths.get("src/images");
+                        
+                        if (!Files.exists(carpetaDestino)) {
+                            Files.createDirectories(carpetaDestino);
+                        }
+
+                        Path archivoDestino = carpetaDestino.resolve(archivoOrigen.getName());
+                        Files.copy(archivoOrigen.toPath(), archivoDestino, StandardCopyOption.REPLACE_EXISTING);
+
+                        ImageIcon imagenIcono = new ImageIcon(archivoDestino.toString());
+                        java.awt.Image imagenEscalada = imagenIcono.getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+                        
+                        lblContenedorImagen.setIcon(new ImageIcon(imagenEscalada));
+                        lblContenedorImagen.setText(""); 
+                        
+                        JOptionPane.showMessageDialog(null, "Imagen guardada con éxito en: " + archivoDestino.toAbsolutePath());
+
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(null, "Error al guardar la imagen: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        ex.printStackTrace();
+                    }
+                	
+                	
+                	
                     
-                    // Opcional: Escalar la imagen para que quepa en el JLabel
-                    java.awt.Image imagenEscalada = imagenIcono.getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
-                    
-                    lblContenedorImagen.setIcon(new ImageIcon(imagenEscalada));
-                    lblContenedorImagen.setText(""); // Quitar el texto
                     
                 }
             }

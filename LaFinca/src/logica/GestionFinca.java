@@ -7,8 +7,29 @@ public class GestionFinca {
 	private ArrayList<Vaca> lasVacas;
 	private ArrayList<Becerrito> losBecerritos;
 	public static GestionFinca finca = null;
+	public static int idBovino=1;
+	
 	public GestionFinca() {
-		
+		losToros = new ArrayList<>();
+		lasVacas = new ArrayList<>();
+		losBecerritos = new ArrayList<>();
+	}
+	
+	public void agregarVaca(Vaca V1)
+	{
+		lasVacas.add(V1);
+		idBovino++;
+	}
+	
+	public void agregarToro(Toro T1)
+	{
+		losToros.add(T1);
+		idBovino++;
+	}
+	public void agregarBecerrito(Becerrito B1)
+	{
+		losBecerritos.add(B1);
+		idBovino++;
 	}
 	
 	public static GestionFinca getInstancia()

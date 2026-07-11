@@ -8,14 +8,16 @@ public class Vaca extends Bovino {
 	ArrayList<Embarazo> misEmbarazos;
 	ArrayList<Becerrito> misHijos;
 	
-	public Vaca(String id, String nombre,String urlImagen, LocalDate fechaNac, String raza, String procedencia) {
-		super(id, nombre,urlImagen, fechaNac, raza, procedencia);
-	}
+	
 		
 	public Embarazo getUltimoEmbarazo()
 	{
 		int index = misEmbarazos.size();
 		return misEmbarazos.get(index - 1);
+	}
+	
+	public Vaca(String nombre, String urlImagen, LocalDate fechaNac, String raza, String procedencia) {
+		super(nombre, urlImagen, fechaNac, raza, procedencia);
 	}
 
 }
