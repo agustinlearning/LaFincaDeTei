@@ -22,6 +22,11 @@ import javax.swing.SpinnerDateModel;
 import java.util.Date;
 import java.util.Calendar;
 import javax.swing.JCheckBox;
+import javax.swing.*;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 
 public class AgregarVaca extends JDialog {
@@ -30,7 +35,6 @@ public class AgregarVaca extends JDialog {
 	private JTextField txtNombre;
 	private JButton btnSeleccionar;
     private JLabel lblContenedorImagen;
-    private LocalDate fecha;
     private JSpinner spnFechaEmbarazo;
     private JSpinner spnFechaParto;
     private JSpinner spnAproximada;
@@ -127,8 +131,15 @@ public class AgregarVaca extends JDialog {
 		contentPanel.add(lblFechaDeEmbarazo);
 		
 		spnFechaEmbarazo = new JSpinner();
+		spnFechaEmbarazo.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				LocalDate fecha = (LocalDate) spnFechaEmbarazo.getValue();
+				spnAproximada.setValue(fecha.plusMonths(9));
+				
+			}
+		});
 		spnFechaEmbarazo.setEnabled(false);
-		spnFechaEmbarazo.setModel(new SpinnerDateModel(new Date(1783569600000L), null, null, Calendar.DAY_OF_MONTH));
+		spnFechaEmbarazo.setModel(new LocalDateSpinnerModel(LocalDate.now(), ChronoUnit.DAYS));
 		spnFechaEmbarazo.setBounds(51, 166, 172, 26);
 		contentPanel.add(spnFechaEmbarazo);
 		
@@ -137,7 +148,7 @@ public class AgregarVaca extends JDialog {
 		contentPanel.add(label);
 		
 		spnFechaParto = new JSpinner();
-		spnFechaParto.setModel(new SpinnerDateModel(new Date(1783656000000L), null, null, Calendar.DAY_OF_MONTH));
+		spnFechaParto.setModel(new LocalDateSpinnerModel(LocalDate.now(), ChronoUnit.DAYS));
 		spnFechaParto.setBounds(51, 231, 172, 26);
 		contentPanel.add(spnFechaParto);
 		
@@ -149,7 +160,7 @@ public class AgregarVaca extends JDialog {
 					spnFechaEmbarazo.setEnabled(true);
 				}
 				else {
-					spnFechaEmbarazo.setEnabled(true);
+					spnFechaEmbarazo.setEnabled(false);
 				}
 			}
 		});
@@ -165,7 +176,11 @@ public class AgregarVaca extends JDialog {
 		contentPanel.add(label_1);
 		
 		spnAproximada = new JSpinner();
-		spnAproximada.setModel(new SpinnerDateModel(new Date(1783656000000L), new Date(1783656000000L), null, Calendar.DAY_OF_MONTH));
+		spnAproximada.setEnabled(false);
+		spnAproximada.setModel(new LocalDateSpinnerModel(LocalDate.now(), ChronoUnit.DAYS));
+		LocalDate fecha = (LocalDate) spnFechaEmbarazo.getValue();
+		
+		spnAproximada.setValue(fecha.plusMonths(9));
 		spnAproximada.setBounds(51, 309, 172, 26);
 		contentPanel.add(spnAproximada);
 		
