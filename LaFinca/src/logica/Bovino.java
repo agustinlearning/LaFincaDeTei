@@ -6,11 +6,12 @@ public abstract class Bovino {
 	protected String id;
 	protected String nombre;
 	protected LocalDate fechaNac;
+	protected String urlImagen;
 	protected String raza;
 	protected String procedencia;
 	protected Boolean vivo = true;
 	
-	public Bovino(String id, String nombre, LocalDate fechaNac, String raza, String procedencia) {
+	public Bovino(String id, String nombre,String urlImagen, LocalDate fechaNac, String raza, String procedencia) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
