@@ -8,6 +8,7 @@ public abstract class Bovino {
 	protected LocalDate fechaNac;
 	protected String raza;
 	protected String procedencia;
+	protected Boolean vivo = true;
 	
 	public Bovino(String id, String nombre, LocalDate fechaNac, String raza, String procedencia) {
 		super();
@@ -16,6 +17,50 @@ public abstract class Bovino {
 		this.fechaNac = fechaNac;
 		this.raza = raza;
 		this.procedencia = procedencia;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public LocalDate getFechaNac() {
+		return fechaNac;
+	}
+
+	public void setFechaNac(LocalDate fechaNac) {
+		this.fechaNac = fechaNac;
+	}
+
+	public String getRaza() {
+		return raza;
+	}
+
+	public void setRaza(String raza) {
+		this.raza = raza;
+	}
+
+	public String getProcedencia() {
+		return procedencia;
+	}
+
+	public void setProcedencia(String procedencia) {
+		this.procedencia = procedencia;
+	}
+
+	public Boolean getVivo() {
+		return vivo;
+	}
+
+	public void setVivo(Boolean vivo) {
+		this.vivo = vivo;
+	}
+
+	public String getId() {
+		return id;
 	}
 	
 	

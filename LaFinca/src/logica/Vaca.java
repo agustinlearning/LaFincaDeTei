@@ -10,7 +10,12 @@ public class Vaca extends Bovino {
 	
 	public Vaca(String id, String nombre, LocalDate fechaNac, String raza, String procedencia) {
 		super(id, nombre, fechaNac, raza, procedencia);
-		// TODO Auto-generated constructor stub
+	}
+		
+	public Embarazo getUltimoEmbarazo()
+	{
+		int index = misEmbarazos.size();
+		return misEmbarazos.get(index - 1);
 	}
 
 }
