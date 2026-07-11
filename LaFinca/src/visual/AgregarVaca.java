@@ -35,10 +35,9 @@ public class AgregarVaca extends JDialog {
 	private JTextField txtNombre;
 	private JButton btnSeleccionar;
     private JLabel lblContenedorImagen;
-    private JSpinner spnFechaEmbarazo;
-    private JSpinner spnFechaParto;
-    private JSpinner spnAproximada;
-    private JCheckBox chxEmbarazada;
+    private JSpinner spnFechaNac;
+    private JTextField txtRaza;
+    private JComboBox comboBox;
 	/**
 	 * Launch the application.
 	 */
@@ -56,18 +55,18 @@ public class AgregarVaca extends JDialog {
 	 * Create the dialog.
 	 */
 	public AgregarVaca() {
-		setBounds(100, 100, 720, 527);
+		setBounds(100, 100, 720, 420);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nombre: ");
-		lblNewLabel.setBounds(51, 56, 69, 20);
+		lblNewLabel.setBounds(51, 36, 69, 20);
 		contentPanel.add(lblNewLabel);
 		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(135, 53, 146, 26);
+		txtNombre.setBounds(161, 33, 146, 26);
 		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		{
@@ -94,7 +93,7 @@ public class AgregarVaca extends JDialog {
 		
 		
         lblContenedorImagen = new JLabel("Ninguna imagen seleccionada", SwingConstants.CENTER);
-        lblContenedorImagen.setBounds(340, 92, 218, 151);
+        lblContenedorImagen.setBounds(379, 91, 218, 203);
 		contentPanel.add(lblContenedorImagen);
 		btnSeleccionar = new JButton("Buscar Imagen...");
 		btnSeleccionar.addActionListener(new ActionListener() {
@@ -120,69 +119,41 @@ public class AgregarVaca extends JDialog {
                     
                     lblContenedorImagen.setIcon(new ImageIcon(imagenEscalada));
                     lblContenedorImagen.setText(""); // Quitar el texto
+                    
                 }
             }
         });
-		btnSeleccionar.setBounds(313, 53, 278, 23);
+		btnSeleccionar.setBounds(348, 35, 278, 23);
 		contentPanel.add(btnSeleccionar);
 		
-		JLabel lblFechaDeEmbarazo = new JLabel("Fecha de embarazo");
-		lblFechaDeEmbarazo.setBounds(51, 138, 146, 20);
+		JLabel lblFechaDeEmbarazo = new JLabel("Fecha de Nacimiento");
+		lblFechaDeEmbarazo.setBounds(51, 109, 146, 20);
 		contentPanel.add(lblFechaDeEmbarazo);
 		
-		spnFechaEmbarazo = new JSpinner();
-		spnFechaEmbarazo.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				LocalDate fecha = (LocalDate) spnFechaEmbarazo.getValue();
-				spnAproximada.setValue(fecha.plusMonths(9));
-				
-			}
-		});
-		spnFechaEmbarazo.setEnabled(false);
-		spnFechaEmbarazo.setModel(new LocalDateSpinnerModel(LocalDate.now(), ChronoUnit.DAYS));
-		spnFechaEmbarazo.setBounds(51, 166, 172, 26);
-		contentPanel.add(spnFechaEmbarazo);
+		spnFechaNac = new JSpinner();
+		spnFechaNac.setModel(new LocalDateSpinnerModel(LocalDate.now(), ChronoUnit.DAYS));
+		spnFechaNac.setBounds(51, 137, 172, 26);
+		contentPanel.add(spnFechaNac);
 		
-		JLabel label = new JLabel("Fecha de parto");
-		label.setBounds(51, 203, 146, 20);
-		contentPanel.add(label);
+		JLabel lblRaza = new JLabel("Raza: ");
+		lblRaza.setBounds(51, 182, 69, 20);
+		contentPanel.add(lblRaza);
 		
-		spnFechaParto = new JSpinner();
-		spnFechaParto.setModel(new LocalDateSpinnerModel(LocalDate.now(), ChronoUnit.DAYS));
-		spnFechaParto.setBounds(51, 231, 172, 26);
-		contentPanel.add(spnFechaParto);
+		txtRaza = new JTextField();
+		txtRaza.setColumns(10);
+		txtRaza.setBounds(161, 179, 146, 26);
+		contentPanel.add(txtRaza);
 		
-		chxEmbarazada = new JCheckBox("");
-		chxEmbarazada.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(chxEmbarazada.isSelected())
-				{
-					spnFechaEmbarazo.setEnabled(true);
-				}
-				else {
-					spnFechaEmbarazo.setEnabled(false);
-				}
-			}
-		});
-		chxEmbarazada.setBounds(194, 97, 29, 29);
-		contentPanel.add(chxEmbarazada);
+		JLabel lblProcedencia = new JLabel("Procedencia: ");
+		lblProcedencia.setBounds(51, 255, 95, 20);
+		contentPanel.add(lblProcedencia);
 		
-		JLabel lblNewLabel_1 = new JLabel("\u00BFEmbarazada?");
-		lblNewLabel_1.setBounds(51, 102, 102, 20);
-		contentPanel.add(lblNewLabel_1);
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Nacido en finca", "Comprado"}));
+		comboBox.setToolTipText("");
+		comboBox.setBounds(161, 252, 146, 26);
+		contentPanel.add(comboBox);
 		
-		JLabel label_1 = new JLabel("Fecha Aproximada de Parto");
-		label_1.setBounds(51, 273, 218, 20);
-		contentPanel.add(label_1);
-		
-		spnAproximada = new JSpinner();
-		spnAproximada.setEnabled(false);
-		spnAproximada.setModel(new LocalDateSpinnerModel(LocalDate.now(), ChronoUnit.DAYS));
-		LocalDate fecha = (LocalDate) spnFechaEmbarazo.getValue();
-		
-		spnAproximada.setValue(fecha.plusMonths(9));
-		spnAproximada.setBounds(51, 309, 172, 26);
-		contentPanel.add(spnAproximada);
 		
 	}
 }
