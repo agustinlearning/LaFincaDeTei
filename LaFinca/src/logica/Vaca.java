@@ -12,12 +12,40 @@ public class Vaca extends Bovino {
 		
 	public Embarazo getUltimoEmbarazo()
 	{
-		int index = misEmbarazos.size();
-		return misEmbarazos.get(index - 1);
+		if(misEmbarazos.size() == 0)
+			return null;
+		else
+		{
+			return misEmbarazos.get(misEmbarazos.size()-1);
+		}
 	}
-	
+
+
+
 	public Vaca(String nombre, String urlImagen, LocalDate fechaNac, String raza, String procedencia) {
 		super(nombre, urlImagen, fechaNac, raza, procedencia);
+		this.misEmbarazos = new ArrayList<>();
+		this.misHijos = new ArrayList<>();
 	}
+
+
+
+	public ArrayList<Embarazo> getMisEmbarazos() {
+		return misEmbarazos;
+	}
+
+
+
+	
+
+
+
+	public ArrayList<Becerrito> getMisHijos() {
+		return misHijos;
+	}
+	
+	
+	
+	
 
 }
