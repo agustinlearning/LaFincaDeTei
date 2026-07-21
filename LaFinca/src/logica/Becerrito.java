@@ -11,5 +11,30 @@ public class Becerrito extends Bovino {
 		super(nombre,urlImagen, fechaNac, raza, procedencia);
 		
 	}
+	
+	public String getNumero() {
+		return numero;
+	}
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+	public Vaca getMadre() {
+		return madre;
+	}
+	public void setMadre(Vaca madre) {
+		this.madre = madre;
+	}
+	public Toro getPadre() {
+		return padre;
+	}
+	public void setPadre(Toro padre) {
+		this.padre = padre;
+	}
+	public String getGenero() {
+		return genero;
+	}
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
 
 }
