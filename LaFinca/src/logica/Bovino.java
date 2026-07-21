@@ -13,7 +13,8 @@ public abstract class Bovino {
 	
 	public Bovino(String nombre,String urlImagen, LocalDate fechaNac, String raza, String procedencia) {
 		super();
-		this.id = "B-" + GestionFinca.getInstancia().idBovino;
+		GestionFinca.getInstancia();
+		this.id = "B-" + GestionFinca.idBovino;
 		this.nombre = nombre;
 		this.fechaNac = fechaNac;
 		this.raza = raza;
