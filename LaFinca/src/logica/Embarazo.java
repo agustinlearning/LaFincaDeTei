@@ -55,15 +55,7 @@ public class Embarazo {
 
 	public String getId() {
 		return id;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 	
 	
 }
