@@ -5,17 +5,10 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.filechooser.*;
 
+import logica.GestionFinca;
 import logica.Vaca;
 
 import java.io.File;
@@ -25,16 +18,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
-import java.util.Date;
-import java.util.Calendar;
-import javax.swing.JCheckBox;
 import javax.swing.*;
-import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
 
 
 public class AgregarVaca extends JDialog {
@@ -45,8 +30,9 @@ public class AgregarVaca extends JDialog {
     private JLabel lblContenedorImagen;
     private JSpinner spnFechaNac;
     private JTextField txtRaza;
-    private JComboBox comboBox;
+    private JComboBox<String> cbxProcedencia;
     private File archivoSeleccionado;
+    private Path archivoDestino;
 	/**
 	 * Launch the application.
 	 */
@@ -86,7 +72,10 @@ public class AgregarVaca extends JDialog {
 				JButton okButton = new JButton("A\u00F1adir");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Vaca vaca = new Vaca(txtNombre.getText(),archivoSeleccionado.);
+						Vaca vaca = new Vaca(txtNombre.getText(),archivoDestino.toString(),(LocalDate) spnFechaNac.getValue(),txtRaza.getText(),(String) cbxProcedencia.getSelectedItem());
+						GestionFinca.getInstancia().agregarVaca(vaca);
+						JOptionPane.showMessageDialog(null, "Vaca Registrada", "Información", JOptionPane.INFORMATION_MESSAGE);
+					    clear();
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -125,25 +114,29 @@ public class AgregarVaca extends JDialog {
                 	File archivoOrigen = fileChooser.getSelectedFile();
                     
                     try {
-                        Path carpetaDestino = Paths.get("src/images");
+                    	
+                        Path carpetaDestino = Paths.get("imagenes_app");
                         
                         if (!Files.exists(carpetaDestino)) {
                             Files.createDirectories(carpetaDestino);
                         }
+                        
+                        String nombreOriginal = archivoOrigen.getName();
+                        String extension = nombreOriginal.substring(nombreOriginal.lastIndexOf("."));
 
-                        Path archivoDestino = carpetaDestino.resolve(archivoOrigen.getName());
+                        GestionFinca.getInstancia();
+						String nuevoNombre = "img"+ "B-" + GestionFinca.idBovino + extension;
+
+                        archivoDestino = carpetaDestino.resolve(nuevoNombre);
                         Files.copy(archivoOrigen.toPath(), archivoDestino, StandardCopyOption.REPLACE_EXISTING);
-
+                        
                         ImageIcon imagenIcono = new ImageIcon(archivoDestino.toString());
                         java.awt.Image imagenEscalada = imagenIcono.getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
                         
                         lblContenedorImagen.setIcon(new ImageIcon(imagenEscalada));
                         lblContenedorImagen.setText(""); 
-                        
-                        JOptionPane.showMessageDialog(null, "Imagen guardada con éxito en: " + archivoDestino.toAbsolutePath());
 
                     } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(null, "Error al guardar la imagen: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                         ex.printStackTrace();
                     }
                 	
@@ -179,12 +172,17 @@ public class AgregarVaca extends JDialog {
 		lblProcedencia.setBounds(51, 255, 95, 20);
 		contentPanel.add(lblProcedencia);
 		
-		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Nacido en finca", "Comprado"}));
-		comboBox.setToolTipText("");
-		comboBox.setBounds(161, 252, 146, 26);
-		contentPanel.add(comboBox);
-		
-		
+		cbxProcedencia = new JComboBox();
+		cbxProcedencia.setModel(new DefaultComboBoxModel(new String[] {"Nacido en finca", "Comprado"}));
+		cbxProcedencia.setToolTipText("");
+		cbxProcedencia.setBounds(161, 252, 146, 26);
+		contentPanel.add(cbxProcedencia);
+	}
+	private void clear() {
+		txtNombre.setText("");
+		spnFechaNac.setValue(LocalDate.now());
+		txtRaza.setText("");
+		lblContenedorImagen.setText("Imagen no seleccionada");
+		lblContenedorImagen.setIcon(null);
 	}
 }
