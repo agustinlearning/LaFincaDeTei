@@ -51,6 +51,44 @@ public class GestionFinca {
 		}
 		return null;
 	}
+
+	public Vaca buscarVacaPorId(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void eliminarVacaPorIndex(Vaca selected) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public ArrayList<Toro> getLosToros() {
+		return losToros;
+	}
+
+	public void setLosToros(ArrayList<Toro> losToros) {
+		this.losToros = losToros;
+	}
+
+	public ArrayList<Vaca> getLasVacas() {
+		return lasVacas;
+	}
+
+	public void setLasVacas(ArrayList<Vaca> lasVacas) {
+		this.lasVacas = lasVacas;
+	}
+
+	public ArrayList<Becerrito> getLosBecerritos() {
+		return losBecerritos;
+	}
+
+	public void setLosBecerritos(ArrayList<Becerrito> losBecerritos) {
+		this.losBecerritos = losBecerritos;
+	}
+
+	public static int getIdBovino() {
+		return idBovino;
+	}
 	
 	
 }
