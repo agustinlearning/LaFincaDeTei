@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.ArrayList;
+import java.io.*;
 
 public class GestionFinca {
 	private ArrayList<Toro> losToros;
@@ -13,12 +14,14 @@ public class GestionFinca {
 		losToros = new ArrayList<>();
 		lasVacas = new ArrayList<>();
 		losBecerritos = new ArrayList<>();
+
+		GestorBaseDatos.inicializarEstructura();
 	}
 	
 	public void agregarVaca(Vaca V1)
 	{
+		GestorBaseDatos.insertarVaca(V1);
 		lasVacas.add(V1);
-		idBovino++;
 	}
 	
 	public void agregarToro(Toro T1)
