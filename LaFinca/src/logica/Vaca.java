@@ -7,8 +7,27 @@ public class Vaca extends Bovino {
 	
 	ArrayList<Embarazo> misEmbarazos;
 	ArrayList<Becerrito> misHijos;
-	
-	
+
+	public Vaca(String id, String nombre, String urlImagen, LocalDate fechaNac, String raza, String procedencia) {
+		super(id, nombre, urlImagen, fechaNac, raza, procedencia);
+		this.misEmbarazos = new ArrayList<>();
+		this.misHijos = new ArrayList<>();
+	}
+
+	public Vaca(String nombre, String urlImagen, LocalDate fechaNac, String raza, String procedencia) {
+		super(nombre, urlImagen, fechaNac, raza, procedencia);
+		this.misEmbarazos = new ArrayList<>();
+		this.misHijos = new ArrayList<>();
+	}
+
+
+	public static Vaca registrarNueva(String nombre, String urlImagen, LocalDate fechaNac, String raza, String procedencia) {
+		return new Vaca(null, nombre, urlImagen, fechaNac, raza, procedencia);
+	}
+
+	public static Vaca reconstruirDesdeBD(String id, String nombre, String urlImagen, LocalDate fechaNac, String raza, String procedencia) {
+		return new Vaca(id, nombre, urlImagen, fechaNac, raza, procedencia);
+	}
 		
 	public Embarazo getUltimoEmbarazo()
 	{
@@ -22,21 +41,9 @@ public class Vaca extends Bovino {
 
 
 
-	public Vaca(String nombre, String urlImagen, LocalDate fechaNac, String raza, String procedencia) {
-		super(nombre, urlImagen, fechaNac, raza, procedencia);
-		this.misEmbarazos = new ArrayList<>();
-		this.misHijos = new ArrayList<>();
-	}
-
-
-
 	public ArrayList<Embarazo> getMisEmbarazos() {
 		return misEmbarazos;
 	}
-
-
-
-	
 
 
 
