@@ -1,1 +1,17 @@
-/bin/
+# Archivos de IntelliJ IDEA a ignorar
+.idea/
+*.iml
+out/
+
+# Archivos de Eclipse a ignorar
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+
+# Archivos compilados de Java
+*.class/bin/
