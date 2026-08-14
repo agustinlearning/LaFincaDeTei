@@ -14,12 +14,6 @@ public class Vaca extends Bovino {
 		this.misHijos = new ArrayList<>();
 	}
 
-	public Vaca(String nombre, String urlImagen, LocalDate fechaNac, String raza, String procedencia) {
-		super(nombre, urlImagen, fechaNac, raza, procedencia);
-		this.misEmbarazos = new ArrayList<>();
-		this.misHijos = new ArrayList<>();
-	}
-
 
 	public static Vaca registrarNueva(String nombre, String urlImagen, LocalDate fechaNac, String raza, String procedencia) {
 		return new Vaca(null, nombre, urlImagen, fechaNac, raza, procedencia);
