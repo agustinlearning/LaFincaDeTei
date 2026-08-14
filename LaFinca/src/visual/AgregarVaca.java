@@ -72,7 +72,13 @@ public class AgregarVaca extends JDialog {
 				JButton okButton = new JButton("A\u00F1adir");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Vaca vaca = new Vaca(txtNombre.getText(), archivoDestino != null ? archivoDestino.toString() : "",(LocalDate) spnFechaNac.getValue(),txtRaza.getText(),(String) cbxProcedencia.getSelectedItem());
+						Vaca vaca = Vaca.registrarNueva(
+								txtNombre.getText(),
+								archivoDestino != null ? archivoDestino.toString() : "",
+								(LocalDate) spnFechaNac.getValue(),
+								txtRaza.getText(),
+								(String) cbxProcedencia.getSelectedItem()
+						);
 						GestionFinca.getInstancia().agregarVaca(vaca);
 						JOptionPane.showMessageDialog(null, "Vaca Registrada", "Información", JOptionPane.INFORMATION_MESSAGE);
 					    clear();
