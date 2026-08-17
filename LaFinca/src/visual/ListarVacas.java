@@ -184,7 +184,7 @@ public class ListarVacas extends JDialog {
 	}
 	
 	private ImageIcon buscarImagen(String nombre) {
-	    Path rutaDirectorio = Paths.get("imagenes_app");
+	    Path rutaDirectorio = Paths.get("src/images");
 	    Optional<Path> resultado1 = buscarArchivo(rutaDirectorio, nombre + ".jpg");
 	    Optional<Path> resultado2 = buscarArchivo(rutaDirectorio, nombre + ".png");
 	    

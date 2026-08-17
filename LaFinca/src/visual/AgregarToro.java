@@ -22,7 +22,7 @@ import javax.swing.*;
 import java.time.temporal.ChronoUnit;
 
 
-public class AgregarVaca extends JDialog {
+public class AgregarToro extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombre;
@@ -38,7 +38,7 @@ public class AgregarVaca extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			AgregarVaca dialog = new AgregarVaca();
+			AgregarToro dialog = new AgregarToro();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -49,7 +49,7 @@ public class AgregarVaca extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public AgregarVaca() {
+	public AgregarToro() {
 		setBounds(100, 100, 720, 420);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
