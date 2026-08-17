@@ -118,9 +118,9 @@ public class ListarVacas extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if(selected!= null)
 				{
-					AgregarVaca updVaca = new AgregarVaca();
-					updVaca.setModal(true);
-					updVaca.setVisible(true);
+					AgregarBovino updBovino = new AgregarBovino();
+					updBovino.setModal(true);
+					updBovino.setVisible(true);
 				}
 			}
 		});
