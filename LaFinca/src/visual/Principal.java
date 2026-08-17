@@ -42,15 +42,15 @@ public class Principal extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu MenuVacas = new JMenu("Vacas");
+		JMenu MenuVacas = new JMenu("Bovinos");
 		menuBar.add(MenuVacas);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Agregar");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AgregarVaca agregarVaca = new AgregarVaca();
-				agregarVaca.setModal(true);
-				agregarVaca.setVisible(true);
+				AgregarBovino agregarBovino = new AgregarBovino();
+				agregarBovino.setModal(true);
+				agregarBovino.setVisible(true);
 			}
 		});
 		MenuVacas.add(mntmNewMenuItem);
@@ -64,24 +64,6 @@ public class Principal extends JFrame {
 			}
 		});
 		MenuVacas.add(mntmNewMenuItem_1);
-		
-		JMenu mnNewMenu = new JMenu("Toros");
-		menuBar.add(mnNewMenu);
-		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_2);
-		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_4);
-		
-		JMenu mnNewMenu_1 = new JMenu("Becerritos");
-		menuBar.add(mnNewMenu_1);
-		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem_3);
-		
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem_5);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
