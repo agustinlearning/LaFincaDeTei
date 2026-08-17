@@ -10,12 +10,11 @@ public abstract class Bovino {
 	protected String raza;
 	protected String procedencia;
 	protected Boolean vivo = true;
-	
-	public Bovino(String nombre,String urlImagen, LocalDate fechaNac, String raza, String procedencia) {
-		super();
-		GestionFinca.getInstancia();
-		this.id = "B-" + GestionFinca.idBovino;
+
+	public Bovino(String id, String nombre, String urlImagen, LocalDate fechaNac, String raza, String procedencia) {
+		this.id = id;
 		this.nombre = nombre;
+		this.urlImagen = urlImagen;
 		this.fechaNac = fechaNac;
 		this.raza = raza;
 		this.procedencia = procedencia;
@@ -61,10 +60,8 @@ public abstract class Bovino {
 		this.vivo = vivo;
 	}
 
-	public String getId() {
-		return id;
-	}
-	
-	
+	public void setId(String id) {this.id = id;}
+
+	public String getId() {return id;}
 
 }

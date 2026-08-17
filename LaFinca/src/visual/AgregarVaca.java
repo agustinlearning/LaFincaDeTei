@@ -72,9 +72,15 @@ public class AgregarVaca extends JDialog {
 				JButton okButton = new JButton("A\u00F1adir");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Vaca vaca = new Vaca(txtNombre.getText(),archivoDestino.toString(),(LocalDate) spnFechaNac.getValue(),txtRaza.getText(),(String) cbxProcedencia.getSelectedItem());
+						Vaca vaca = Vaca.registrarNueva(
+								txtNombre.getText(),
+								archivoDestino != null ? archivoDestino.toString() : "",
+								(LocalDate) spnFechaNac.getValue(),
+								txtRaza.getText(),
+								(String) cbxProcedencia.getSelectedItem()
+						);
 						GestionFinca.getInstancia().agregarVaca(vaca);
-						JOptionPane.showMessageDialog(null, "Vaca Registrada", "InformaciÛn", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Vaca Registrada", "Informaci√≥n", JOptionPane.INFORMATION_MESSAGE);
 					    clear();
 					}
 				});
@@ -104,7 +110,7 @@ public class AgregarVaca extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileChooser = new JFileChooser();
 
-                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Im·genes (JPG, PNG)", "jpg", "jpeg", "png");
+                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Im√°genes (JPG, PNG)", "jpg", "jpeg", "png");
                 fileChooser.setFileFilter(filtro);
 
                 int resultado = fileChooser.showOpenDialog(null);
