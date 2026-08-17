@@ -26,11 +26,13 @@ public class GestionFinca {
 	
 	public void agregarToro(Toro T1)
 	{
+		//GestorBaseDatos.insertarToro(T1);
 		losToros.add(T1);
 		idBovino++;
 	}
 	public void agregarBecerrito(Becerrito B1)
 	{
+		//GestorBaseDatos.insertarBecerrito(B1);
 		losBecerritos.add(B1);
 		idBovino++;
 	}
