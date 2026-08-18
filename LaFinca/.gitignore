@@ -1,6 +1,7 @@
 # Archivos de IntelliJ IDEA a ignorar
 .idea/
 *.iml
+*.eml
 out/
 
 # Archivos de Eclipse a ignorar
