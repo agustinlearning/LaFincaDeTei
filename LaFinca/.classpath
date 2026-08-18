@@ -3,7 +3,5 @@
 	<classpathentry including="images/|logica/|recursos/|visual/" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="src/Lib/LGoodDatePicker-11.2.1.jar"/>
-	<classpathentry kind="lib" path="src/Lib/sqlite-jdbc-3.39.4.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
