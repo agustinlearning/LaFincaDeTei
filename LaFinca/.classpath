@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry including="images/|logica/|visual/" kind="src" path="src"/>
+	<classpathentry including="Lib/|images/|logica/|recursos/|visual/" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="src/Lib/LGoodDatePicker-11.2.1.jar"/>
