@@ -126,7 +126,7 @@ public class AgregarBovino extends JDialog {
 				if (resultado == JFileChooser.APPROVE_OPTION) {
 					File archivoOrigen = fileChooser.getSelectedFile();
 					try {
-						Path carpetaDestino = Paths.get("src/images");
+						Path carpetaDestino = Paths.get("/LaFinca/src/images");
 						
 						if (!Files.exists(carpetaDestino)) {
 							Files.createDirectories(carpetaDestino);
