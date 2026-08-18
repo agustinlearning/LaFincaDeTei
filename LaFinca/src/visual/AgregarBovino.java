@@ -23,6 +23,8 @@ import javax.swing.*;
 // Nuevas importaciones para LGoodDatePicker
 import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class AgregarBovino extends JDialog {
 
@@ -38,7 +40,9 @@ public class AgregarBovino extends JDialog {
 	private JComboBox<String> cbxProcedencia;
 	private File archivoSeleccionado;
 	private Path archivoDestino;
-	private JComboBox<String> comboBox;
+	private JComboBox<String> cbxTipo;
+	private JLabel lblNumero;
+	private JTextField txtNumero;
 
 	/**
 	 * Launch the application.
@@ -57,7 +61,7 @@ public class AgregarBovino extends JDialog {
 	 * Create the dialog.
 	 */
 	public AgregarBovino() {
-		setBounds(100, 100, 810, 465);
+		setBounds(100, 100, 810, 387);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -81,16 +85,28 @@ public class AgregarBovino extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						// 2. Extraer la fecha ahora es mucho más limpio y seguro:
-						Vaca vaca = Vaca.registrarNueva(
-								txtNombre.getText(),
-								archivoDestino != null ? archivoDestino.toString() : "",
-								dpFechaNac.getDate(), // Obtenemos el LocalDate directamente
-								txtRaza.getText(),
-								(String) cbxProcedencia.getSelectedItem()
-						);
-						GestionFinca.getInstancia().agregarVaca(vaca);
-						JOptionPane.showMessageDialog(null, "Vaca Registrada", "Informaci\u00F3n", JOptionPane.INFORMATION_MESSAGE);
-						clear();
+						if(cbxTipo.getSelectedIndex() == 0)
+						{
+							Vaca vaca = Vaca.registrarNueva(
+									txtNombre.getText(),
+									archivoDestino != null ? archivoDestino.toString() : "",
+									dpFechaNac.getDate(), // Obtenemos el LocalDate directamente
+									txtRaza.getText(),
+									(String) cbxProcedencia.getSelectedItem()
+							);
+							GestionFinca.getInstancia().agregarVaca(vaca);
+							JOptionPane.showMessageDialog(null, "Vaca Registrada", "Informaci\u00F3n", JOptionPane.INFORMATION_MESSAGE);
+							clear();
+						}
+						if(cbxTipo.getSelectedIndex() == 1)
+						{
+							
+						}
+						if(cbxTipo.getSelectedIndex() == 2)
+						{
+							
+						}
+						
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -187,19 +203,44 @@ public class AgregarBovino extends JDialog {
 		cbxProcedencia.setBounds(161, 252, 146, 26);
 		contentPanel.add(cbxProcedencia);
 		
-		comboBox = new JComboBox<String>();
-		comboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		cbxTipo = new JComboBox<String>();
+		cbxTipo.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(cbxTipo.getSelectedIndex()!=2)
+				{
+					lblNumero.setVisible(false);
+					txtNumero.setVisible(false);
+				}
+				else
+				{
+					lblNumero.setVisible(true);
+					txtNumero.setVisible(true);
+				}
+				
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Vaca", "Toro", "Becerrito"}));
-		comboBox.setSelectedIndex(0);
-		comboBox.setBounds(161, 102, 146, 26);
-		contentPanel.add(comboBox);
+		cbxTipo.setModel(new DefaultComboBoxModel<String>(new String[] {"Vaca", "Toro", "Becerrito"}));
+		cbxTipo.setSelectedIndex(0);
+		cbxTipo.setBounds(161, 102, 146, 26);
+		contentPanel.add(cbxTipo);
 		
 		JLabel lblTipo = new JLabel("Tipo");
 		lblTipo.setBounds(51, 105, 69, 20);
 		contentPanel.add(lblTipo);
+		
+		lblNumero = new JLabel("Numero");
+		lblNumero.setVisible(false);
+		lblNumero.setBounds(351, 33, 146, 23);
+		contentPanel.add(lblNumero);
+		
+		
+		
+		
+		txtNumero = new JTextField();
+		txtNumero.setBounds(351, 102, 146, 26);
+		txtNumero.setVisible(false);
+		contentPanel.add(txtNumero);
+		txtNumero.setColumns(10);
 	}
 
 	private void clear() {
