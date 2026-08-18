@@ -66,4 +66,34 @@ public class GestorBaseDatos {
             System.out.println("Error al insertar la vaca: " + e.getMessage());
         }
     }
+    
+    public static void insertarToro(Toro toro) {
+        String sql = "INSERT INTO Bovino(tipo, nombre, urlImagen, fechaNac, raza, procedencia, vivo) "
+                + "VALUES(?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = conectar();
+             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            pstmt.setString(1, "TORO");
+            pstmt.setString(2, toro.getNombre());
+            pstmt.setString(3, toro.urlImagen);
+            pstmt.setString(4, toro.getFechaNac().toString());
+            pstmt.setString(5, toro.getRaza());
+            pstmt.setString(6, toro.getProcedencia());
+            pstmt.setInt(7, toro.getVivo() ? 1 : 0); // SQLite no tiene boolean
+
+            pstmt.executeUpdate();
+
+            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    long idGenerado = generatedKeys.getLong(1);
+                    // Actualizamos el objeto con su nuevo ID obtenido de la base de datos
+                    toro.setId("B-" + idGenerado);
+                    System.out.println("Toro guardado exitosamente con el ID: " + toro.getId());
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al insertar el toro: " + e.getMessage());
+        }
+    }
 }
