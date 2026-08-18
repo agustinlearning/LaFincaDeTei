@@ -84,7 +84,7 @@ public class AgregarBovino extends JDialog {
 				JButton okButton = new JButton("A\u00F1adir");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						// 2. Extraer la fecha ahora es mucho m·s limpio y seguro:
+						// 2. Extraer la fecha ahora es mucho m√°s limpio y seguro:
 						if(cbxTipo.getSelectedIndex() == 0)
 						{
 							Vaca vaca = Vaca.registrarNueva(
@@ -179,7 +179,7 @@ public class AgregarBovino extends JDialog {
 		
 		dpFechaNac = new DatePicker(dateSettings);
 		dpFechaNac.setDateToToday(); // Por defecto selecciona hoy
-		// Se le dio un poco m·s de ancho (180) para que el botÛn de calendario quepa perfectamente
+		// Se le dio un poco m√°s de ancho (180) para que el bot√≥n de calendario quepa perfectamente
 		dpFechaNac.setBounds(351, 252, 180, 26); 
 		
 		contentPanel.add(dpFechaNac);
